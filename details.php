@@ -1,5 +1,6 @@
 
-<?php session_start(); 
+<?php 
+session_start(); 
 $db = mysqli_connect('localhost', 'root', '', 'users detail');
 ?>
 <!DOCTYPE html>
@@ -23,13 +24,13 @@ $db = mysqli_connect('localhost', 'root', '', 'users detail');
     $row = mysqli_query($db, $sql);
     $user = mysqli_fetch_assoc($row);
         //echo "<pre>";
-        //print_r($user);
+        print_r($user);
 ?>
   <div class="header">
   <h2>Register</h2>
   </div>
 
-  <form method="post" action="details_process.php">
+  <form method="post" action="details_process.php" enctype="multipart/form-data">
     <div class="input-group">
       <label>Username</label>
       <input type="text" name="username" value="<?php echo $user['username']; ?>">
@@ -56,9 +57,10 @@ $db = mysqli_connect('localhost', 'root', '', 'users detail');
       <label>Hobby</label>
       <input type="text" name="hobby" value="<?php echo $user['hobby']; ?>">
     </div>
+    <input type="hidden" name="size" value="1000000">
     <div class = "input-group">
       <label>Image</label>
-      <input type="file" name="filetoupload" id = "filetoupload">
+      <input type="file" name="image">
     </div>
 
 
