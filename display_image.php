@@ -1,22 +1,29 @@
-<!DOCTYPE html>
 <html>
+
 <body>
 		
-<?php
-
-	$getname = $_GET[' your_imagename '];
-
-	echo "< img src = fetch_image.php?name=".$getname." width=200 height=200 >";
-
-?>
-
-
 <form method="GET" action=" " >
- <input type="file" name="your_imagename">
+ <input type="file" name="image_name">
  <input type="submit" name="display_image" value="Display">
 </form>
+<?php
 
+$db = mysqli_connect('localhost', 'root', '', 'users detail');
+
+$image_name= "";
+
+$select_path="select * from pictures";
+
+$var=mysqli_query($db, $select_path);
+$row = mysqli_fetch_array($var);
+
+$image_path = "image";
+while($row=mysqli_fetch_array($var))
+{
+ $image_name=$row["image"];
+ echo "<img src='".$image_path."/".$image_name."' width='100' height='100'>";
+}
+
+?>
 </body>
 </html>
-
-
